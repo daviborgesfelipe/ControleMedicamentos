@@ -4,5 +4,6 @@ namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
 {
     internal class TelaFornecedor : TelaBase
     {
+
     }
 }

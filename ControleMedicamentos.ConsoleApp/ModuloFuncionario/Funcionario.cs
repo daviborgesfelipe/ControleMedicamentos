@@ -2,7 +2,8 @@
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionario
 {
-    internal class Funcionario : EntidadeBase
+    internal class Funcionario : Usuario
     {
+        public int Cpf { get; set; }
     }
 }
