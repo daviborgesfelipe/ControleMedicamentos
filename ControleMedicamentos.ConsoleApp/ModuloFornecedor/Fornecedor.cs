@@ -1,12 +1,34 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using ControleMedicamentos.ConsoleApp.ModuloRemedio;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    internal class Fornecedor : Usuario
+    public class Fornecedor : EntidadeBase
     {
-        public int CNPJ { get; set; }
+        public string nome;
+        public string telefone;
+        public string email;
+        public string cidade;
+        public string estado;
 
-        public List<Medicamentos> Medicamentos { get; set; }     
+        public Fornecedor(string nome, string telefone, string email, string cidade, string estado)
+        {
+            this.nome = nome;
+            this.telefone = telefone;
+            this.email = email;
+            this.cidade = cidade;
+            this.estado = estado;
+        }
+
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            Fornecedor fornecedorAtualizado = (Fornecedor)registroAtualizado;
+
+            this.nome = fornecedorAtualizado.nome;
+            this.telefone = fornecedorAtualizado.telefone;
+            this.email = fornecedorAtualizado.email;
+            this.cidade = fornecedorAtualizado.cidade;
+            this.estado = fornecedorAtualizado.estado;
+        }
     }
 }
