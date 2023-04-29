@@ -1,9 +1,9 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using ControleMedicamentos.ConsoleApp.ModuloRemedio;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    public class Fornecedor : Usuario
+    public class Fornecedor : EntidadeBase
     {
         public string nome;
         public string telefone;

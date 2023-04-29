@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using ControleMedicamentos.ConsoleApp.ModuloFuncionario;
 using ControleMedicamentos.ConsoleApp.ModuloMedicamentos;
 using ControleMedicamentos.ConsoleApp.ModuloRemedio;
@@ -34,49 +34,21 @@ namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao
             nomeEntidade = "Entrada Medicamento";
         }
 
-        internal int InteragirMenuAquisicao()
-        {
-            Console.Clear();
-            Console.WriteLine("Menu Entrada Medicamento");
-            Console.WriteLine();
-            Console.WriteLine("Selecione a opcao desejada");
-            Console.WriteLine();
-            Console.WriteLine("[1] Vizualizar todas entradas de medicamentos");
-            Console.WriteLine("[3] Editar entradas de medicamentos");
-            Console.WriteLine("[4] Excluir entradas de medicamentos");
-            Console.WriteLine("[0] Votlar menu inicial");
-            Console.WriteLine();
-            int opcaoMenu = Convert.ToInt32(Console.ReadLine());
-            return opcaoMenu;
-        }
-        public override void EditarRegistro()
-        {
-            MostrarCabecalho($"Cadastro de {nomeEntidade}{sufixo}", $"Editando um registro de {nomeEntidade} já cadastrado...");
-            VisualizarRegistros(false);
-            Console.WriteLine();
-            Console.Write("Digite o id do registro: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-            EntradaMedicamento aquisicao = _repositorioEntradaMedicamento.SelecionarPorId(id);
-            EntidadeBase registroAtualizado = ObterRegistro();
-            aquisicao.DesfazerRegistroEntrada();
-            repositorioBase.Editar(id, registroAtualizado);
-            MostrarMensagem($"Registro de {nomeEntidade} editado com sucesso!", ConsoleColor.Green);
-        }
         protected override void MostrarTabela(ArrayList registros)
         {
-            Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20}", "Id", "Data", "Medicamento", "Fonecedor", "Quantidade");
-            Console.WriteLine("--------------------------------------------------------------------");
+            Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20} | {4}", "Id", "Data", "Medicamento", "Funcionario", "Fonecedor", "Quantidade");
+            Console.WriteLine("-------------------------------------------------------------------------------------");
             foreach (EntradaMedicamento entradaMedicamento in registros)
             {
-                Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20}",
+                Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20} | {4}",
                     entradaMedicamento.Id,
                     entradaMedicamento.data.ToShortDateString(),
                     entradaMedicamento.medicamento.nome,
+                    entradaMedicamento.funcionario.nome,
                     entradaMedicamento.medicamento.fornecedor.nome,
                     entradaMedicamento.quantidade);
             }
         }
-
         protected override EntidadeBase ObterRegistro()
         {
             Medicamentos medicamento = ObterMedicamento();
@@ -87,7 +59,32 @@ namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao
             DateTime data = Convert.ToDateTime(Console.ReadLine());
             return new EntradaMedicamento(medicamento, quantidade, data, funcionario);
         }
+        public override void EditarRegistro()
+        {
+            MostrarCabecalho($"Cadastro de {nomeEntidade}", $"Editando um registro de {nomeEntidade} já cadastrado...");
+            VisualizarRegistros(false);
+            Console.WriteLine();
+            Console.Write("Digite o id do registro: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            EntradaMedicamento aquisicao = _repositorioEntradaMedicamento.SelecionarPorId(id);
+            EntidadeBase registroAtualizado = ObterRegistro();
+            aquisicao.DesfazerRegistroEntrada();
+            repositorioBase.Editar(id, registroAtualizado);
+            MostrarMensagem($"Registro de {nomeEntidade} editado com sucesso!", ConsoleColor.Green);
+        }
+        public override void ExcluirRegistro()
+        {
+            MostrarCabecalho($"Cadastro de {nomeEntidade}", "Excluindo um registro já cadastrado...");
+            VisualizarRegistros(false);
+            Console.WriteLine();
+            Console.Write("Digite o id do registro: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            EntradaMedicamento entradaMedicamento = _repositorioEntradaMedicamento.SelecionarPorId(id);
+            entradaMedicamento.DesfazerRegistroEntrada();
+            repositorioBase.Excluir(id);
 
+            MostrarMensagem($"Registro de {nomeEntidade} excluído com sucesso!", ConsoleColor.Green);
+        }
         private Funcionario ObterFuncionario()
         {
             _telaFuncionario.VisualizarRegistros(false);
@@ -97,7 +94,6 @@ namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao
             Console.WriteLine();
             return funcionario;
         }
-
         private Medicamentos ObterMedicamento()
         {
             _telaMedicamentos.VisualizarRegistros(false);

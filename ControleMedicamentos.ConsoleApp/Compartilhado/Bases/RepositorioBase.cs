@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Interfaces;
+using System.Collections;
 
-namespace ControleMedicamentos.ConsoleApp.Compartilhado
+namespace ControleMedicamentos.ConsoleApp.Compartilhado.Bases
 {
-    public class RepositorioBase
+    public class RepositorioBase : IRepositorioBase
     {
         protected ArrayList lista;
         protected int contadorRegistros = 0;

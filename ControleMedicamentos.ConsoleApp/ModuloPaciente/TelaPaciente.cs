@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloPaciente
@@ -14,14 +14,13 @@ namespace ControleMedicamentos.ConsoleApp.ModuloPaciente
 
         protected override void MostrarTabela(ArrayList registros)
         {
-            Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", "Id", "Nome", "Cartão SUS");
+            Console.WriteLine("{0, -10} | {1, -20} | {2}", "Id", "Nome", "Cartão SUS");
             Console.WriteLine("--------------------------------------------------------------------");
             foreach (Paciente paciente in registros)
             {
-                Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", paciente.Id, paciente.Nome, paciente.CartaoSus);
+                Console.WriteLine("{0, -10} | {1, -20} | {2}", paciente.Id, paciente.nome, paciente.cartaoSus);
             }
         }
-
         protected override EntidadeBase ObterRegistro()
         {
             Console.Write("Digite o nome: ");

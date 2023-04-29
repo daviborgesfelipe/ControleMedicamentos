@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ControleMedicamentos.ConsoleApp.Compartilhado
+namespace ControleMedicamentos.ConsoleApp.Compartilhado.Bases
 {
     public abstract class TelaBase
     {
@@ -8,7 +8,7 @@ namespace ControleMedicamentos.ConsoleApp.Compartilhado
         public string nomeEntidade;
         public string sufixo;
         protected RepositorioBase repositorioBase = null;
-        
+
         protected abstract EntidadeBase ObterRegistro();
         protected abstract void MostrarTabela(ArrayList registros);
 
@@ -44,7 +44,6 @@ namespace ControleMedicamentos.ConsoleApp.Compartilhado
         {
             MostrarCabecalho($"Cadastro de {nomeEntidade}{sufixo}", $"Inserindo um novo registro de {nomeEntidade}...");
             EntidadeBase registro = ObterRegistro();
-
             repositorioBase.Inserir(registro);
             MostrarMensagem($"Registro de {nomeEntidade} inserido com sucesso!", ConsoleColor.DarkGreen);
         }

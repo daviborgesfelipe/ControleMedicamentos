@@ -1,9 +1,9 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using ControleMedicamentos.ConsoleApp.ModuloFornecedor;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloRemedio
 {
-    internal class Medicamentos : EntidadeBase
+    public class Medicamentos : EntidadeBase
     {
         public string nome;
         public string descricaco;
@@ -26,7 +26,6 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRemedio
         public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
         {
             Medicamentos medicamentoAtualizado = (Medicamentos)registroAtualizado;
-
             this.nome = medicamentoAtualizado.nome;
             this.descricaco = medicamentoAtualizado.descricaco;
             this.lote = medicamentoAtualizado.lote;

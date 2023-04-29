@@ -1,4 +1,5 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
+using ControleMedicamentos.ConsoleApp.Compartilhado.Interfaces;
 using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao

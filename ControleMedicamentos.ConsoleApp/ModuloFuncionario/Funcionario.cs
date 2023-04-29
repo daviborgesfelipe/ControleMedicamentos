@@ -1,18 +1,28 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
+using ControleMedicamentos.ConsoleApp.Compartilhado.Interfaces;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionario
 {
-    internal class Funcionario : Usuario
+    public class Funcionario : EntidadeBase
     {
-        public int Cpf { get; set; }
-        public string Login { get; }
-        public string Senha { get; }
+        public string nome;
+        public string login;
+        public string senha;
+
         public Funcionario(string nome, string login, string senha)
         {
-            Nome = nome;
-            Login = login;
-            Senha = senha;
+            this.nome = nome;
+            this.login = login;
+            this.senha = senha;
         }
 
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            Funcionario funcionarioAtualizado = (Funcionario)registroAtualizado;
+
+            this.nome = funcionarioAtualizado.nome;
+            this.login = funcionarioAtualizado.login;
+            this.senha = funcionarioAtualizado.senha;
+        }
     }
 }

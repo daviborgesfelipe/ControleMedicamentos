@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using ControleMedicamentos.ConsoleApp.ModuloAquisicao;
 using ControleMedicamentos.ConsoleApp.ModuloFuncionario;
 using ControleMedicamentos.ConsoleApp.ModuloPaciente;
@@ -6,7 +6,7 @@ using ControleMedicamentos.ConsoleApp.ModuloRemedio;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
 {
-    internal class SaidaMedicamento : Movimentacao
+    internal class SaidaMedicamento : EntidadeBase
     {
         public Medicamentos medicamento;
         public int quantidade;

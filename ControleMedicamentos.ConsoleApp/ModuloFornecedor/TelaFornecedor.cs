@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
@@ -14,14 +14,13 @@ namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
 
         protected override void MostrarTabela(ArrayList registros)
         {
-            Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", "Id", "Nome", "Telefone");
+            Console.WriteLine("{0, -10} | {1, -20} | {2}", "Id", "Nome", "Telefone");
             Console.WriteLine("--------------------------------------------------------------------");
             foreach (Fornecedor fornecedor in registros)
             {
-                Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", fornecedor.Id, fornecedor.Nome, fornecedor.Telefone);
+                Console.WriteLine("{0, -10} | {1, -20} | {2}", fornecedor.Id, fornecedor.nome, fornecedor.telefone);
             }
         }
-
         protected override EntidadeBase ObterRegistro()
         {
             Console.Write("Digite o nome: ");

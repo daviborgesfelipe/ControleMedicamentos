@@ -1,11 +1,12 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
+using ControleMedicamentos.ConsoleApp.Compartilhado.Interfaces;
 using ControleMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleMedicamentos.ConsoleApp.ModuloFuncionario;
 using ControleMedicamentos.ConsoleApp.ModuloRemedio;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao
 {
-    internal class EntradaMedicamento : Movimentacao
+    internal class EntradaMedicamento : EntidadeBase
     {
         public Medicamentos medicamento;
         public int quantidade;
@@ -24,6 +25,15 @@ namespace ControleMedicamentos.ConsoleApp.ModuloAquisicao
         public void DesfazerRegistroEntrada()
         {
             medicamento.RemoverQuantidade(quantidade);
+        }
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            EntradaMedicamento requisicaoEntradaAtualizada = (EntradaMedicamento)registroAtualizado;
+
+            this.medicamento = requisicaoEntradaAtualizada.medicamento;
+            this.quantidade = requisicaoEntradaAtualizada.quantidade;
+            this.data = requisicaoEntradaAtualizada.data;
+            this.funcionario = requisicaoEntradaAtualizada.funcionario;
         }
     }
 }

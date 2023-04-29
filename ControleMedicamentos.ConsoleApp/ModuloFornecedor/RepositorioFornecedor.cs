@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Bases;
 using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
