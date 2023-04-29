@@ -5,5 +5,12 @@ namespace ControleMedicamentos.ConsoleApp.ModuloPaciente
     {
         public int Cpf { get; set; }
         public string CartaoSus { get; set; }
+
+        public Paciente(string nome, string cartaoSUS)
+        {
+            Nome = nome;
+            CartaoSus = cartaoSUS;
+        }
+
     }
 }

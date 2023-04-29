@@ -1,8 +1,9 @@
 ﻿namespace ControleMedicamentos.ConsoleApp.Compartilhado
 {
-    internal class EntidadeBase
+    public abstract class EntidadeBase
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public abstract void AtualizarInformacoes(EntidadeBase registroAtualizado);
     }
 }

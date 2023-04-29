@@ -9,5 +9,10 @@ namespace ControleMedicamentos.ConsoleApp.Compartilhado
         public Funcionario Funcionario { get; set; }
         public string Data { get; set; }
         public int QntdMedicamento { get; set; }
+
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

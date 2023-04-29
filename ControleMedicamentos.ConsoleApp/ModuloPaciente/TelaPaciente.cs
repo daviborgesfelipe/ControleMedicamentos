@@ -1,22 +1,35 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloPaciente
 {
     internal class TelaPaciente : TelaBase
     {
-        public int InteragirMenuPaciente()
+        public TelaPaciente(RepositorioPaciente repositorioPaciente)
         {
-            Console.Clear();
-            Console.WriteLine("Menu Paciente");
-            Console.WriteLine();
-            Console.WriteLine("Selecione a opcao desejada");
-            Console.WriteLine();
-            Console.WriteLine("[1] Visualizar quantidade medicamentos");
-            Console.WriteLine("[2] Criar requisicao de medicamentos");
-            Console.WriteLine("[3] Visualizar requisicao de medicamentos");
-            Console.WriteLine();
-            int opcaoMenu = Convert.ToInt32(Console.ReadLine());
-            return opcaoMenu;
+            this.repositorioBase = repositorioPaciente;
+            nomeEntidade = "paciente";
+            sufixo = "s";
+        }
+
+        protected override void MostrarTabela(ArrayList registros)
+        {
+            Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", "Id", "Nome", "Cartão SUS");
+            Console.WriteLine("--------------------------------------------------------------------");
+            foreach (Paciente paciente in registros)
+            {
+                Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", paciente.Id, paciente.Nome, paciente.CartaoSus);
+            }
+        }
+
+        protected override EntidadeBase ObterRegistro()
+        {
+            Console.Write("Digite o nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("Digite o número do cartão do SUS: ");
+            string cartaoSUS = Console.ReadLine();
+
+            return new Paciente(nome, cartaoSUS);
         }
     }
 }

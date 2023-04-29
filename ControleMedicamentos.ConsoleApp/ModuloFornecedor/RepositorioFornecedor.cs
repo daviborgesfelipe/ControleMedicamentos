@@ -1,8 +1,17 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    internal class RepositorioFornecedor : RepositorioBase
+    public class RepositorioFornecedor : RepositorioBase
     {
+        public RepositorioFornecedor(ArrayList listaForcedor)
+        {
+            this.lista = listaForcedor;
+        }
+        public override Fornecedor SelecionarPorId(int id)
+        {
+            return (Fornecedor)base.SelecionarPorId(id);
+        }
     }
 }

@@ -1,23 +1,31 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
+using System.Collections;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionario
 {
     internal class TelaFuncionario : TelaBase
     {
-        public int InteragirMenuFuncionario()
+        public TelaFuncionario(RepositorioFuncionario repositorioFuncionario)
         {
-            Console.Clear();
-            Console.WriteLine("Menu Funcionarios");
-            Console.WriteLine();
-            Console.WriteLine("Selecione a opcao desejada");
-            Console.WriteLine();
-            Console.WriteLine("[1] Visualizar quantidade medicamentos");
-            Console.WriteLine("[2] Visualizar requisicao de medicamentos");
-            Console.WriteLine("[3] Responder requisicao de pacientes");
-            Console.WriteLine("[3] Solicitar aquisicao com fornecedor");
-            Console.WriteLine();
-            int opcaoMenu = Convert.ToInt32(Console.ReadLine());
-            return opcaoMenu;
+            this.repositorioBase = repositorioFuncionario;
+            nomeEntidade = "funcionário";
+            sufixo = "s";
         }
+        protected override EntidadeBase ObterRegistro()
+        {
+            Console.Write("Digite o nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("Digite o login: ");
+            string login = Console.ReadLine();
+            Console.Write("Digite a senha: ");
+            string senha = Console.ReadLine();
+            return new Funcionario(nome, login, senha);
+        }
+
+        protected override void MostrarTabela(ArrayList registros)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
